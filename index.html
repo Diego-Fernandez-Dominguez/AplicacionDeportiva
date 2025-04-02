@@ -8,7 +8,7 @@
 <body>
     <h1>Aplicacion Deportiva</h1>
 
-    <form id="formulario">
+    <form id="formularioFutbolista">
         <label for="nombre">Nombre:</label>
         <input type="text" id="nombre" name="nombre" required><br><br>
 
@@ -24,11 +24,12 @@
         <label for="Equipo">Equipo:</label>
         <input type="text" id="Equipo" name="Equipo" required><br><br>
 
-        <input type="submit" value="Enviar">
+        <button type="submit">Agregar</button>
     </form>
     <br><br>
     <h2>Datos Recibidos:</h2>
     <table id="datosJugadores" border="1">
+        <thead>
         <tr>
             <th>Nombre</th>
             <th>Apellidos</th>
@@ -36,6 +37,8 @@
             <th>Año Nacimiento</th>
             <th>Equipo</th>
         </tr>
+    </thead>
+        <tbody id="lista-futbol"></tbody>
     </table>
 
 </body>
