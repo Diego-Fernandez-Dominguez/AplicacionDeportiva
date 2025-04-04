@@ -1,22 +1,50 @@
 class Futbolista {
-    constructor(nombre, apellido, año, posicion) {
+
+    constructor(id, nombre, apellido, edad, posicion) {
+        this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
-        this.año = año;
+        this.edad = edad;
         this.posicion = posicion;
+        this.equipo = [];
+    }
+
+    getId() {
+        return this.id;
     }
 
     getNombreCompleto() {
         return `${this.nombre} ${this.apellido}`;
     }
+
     getEdad() {
-        const fechaActual = new Date();
-        const añoActual = fechaActual.getFullYear();
-        return añoActual - this.año;
+        return this.edad;
     }
 
     getPosicion() {
         return this.posicion;
+    }
+
+    setNombre(nombre) {
+        if (nombre != "") {
+            this.nombre = nombre;
+        }
+    }
+
+    setApellido(apellido) {
+        if (apellido != "") {
+            this.apellido =apellido;
+        }    
+    }
+
+    setPosicion(posicion) {
+        if (posicion != "") {
+            this.posicion = posicion;
+        }    
+    }
+
+    agregarEquipo(idEquipo) {
+        this.equipo.push(equipo);
     }
 
 }
