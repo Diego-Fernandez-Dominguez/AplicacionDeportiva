@@ -18,5 +18,4 @@ class Futbolista {
     getPosicion() {
         return this.posicion;
     }
-
 }
