@@ -1,5 +1,5 @@
-class Equipo{
-    constructor(id, nombre, ciudad, estadio){
+class Equipo {
+    constructor(id, nombre, ciudad, estadio) {
         this.id = id;
         this.nombre = nombre;
         this.ciudad = ciudad;
@@ -7,63 +7,73 @@ class Equipo{
         this.jugadores = [];
     }
 
-    getId(){
+    // Funcion para obtener el ID del equipo
+    getId() {
         return this.id;
     }
-    
-    getNombre(){
+
+    // Funcion para obtener el nombre del equipo
+    getNombre() {
         return this.nombre;
     }
 
-    getCiudad(){
+    // Funcion para obtener la ciudad del equipo
+    getCiudad() {
         return this.ciudad;
     }
 
-    getEstadio(){
+    // Funcion para obtener el estadio del equipo
+    getEstadio() {
         return this.estadio;
     }
 
-    getJugadores(){
+    // Funcion para obtener la lista de jugadores del equipo
+    getJugadores() {
         return this.jugadores;
     }
 
-    setNombre(nombre){
-        if(nombre != ""){
+    // Funcion para establecer el nombre del equipo
+    setNombre(nombre) {
+        if (nombre != "") {
             this.nombre = nombre;
         }
     }
 
-    setCiudad(ciudad){
-        if(ciudad != ""){
+    // Funcion para establecer la ciudad del equipo
+    setCiudad(ciudad) {
+        if (ciudad != "") {
             this.ciudad = ciudad;
         }
     }
 
-    setEstadio(estadio){
-        if(estadio != ""){
+    // Funcion para establecer el estadio del equipo
+    setEstadio(estadio) {
+        if (estadio != "") {
             this.estadio = estadio;
         }
     }
 
-    agregarJugador(jugador){
+    // Funcion para agregar un jugador al equipo
+    agregarJugador(jugador) {
         this.jugadores.push(jugador);
     }
 
-    eliminarJugador(idFutbolista){
-        id=this.buscarJugador(nombre, apellido);
+    // Funcion para eliminar un jugador del equipo
+    eliminarJugador(idFutbolista) {
+        id = this.buscarJugador(nombre, apellido);
 
         if (id != undefined) {
-
-        for (let i = 0; i < this.jugadores.length; i++) {
-            if (this.jugadores[i].id === id) {
-                this.jugadores.splice(i, 1);
-                break;
+            for (let i = 0; i < this.jugadores.length; i++) {
+                if (this.jugadores[i].id === id) {
+                    this.jugadores.splice(i, 1);
+                    break;
+                }
             }
         }
     }
-    }
 
-    buscarJugador(nombre, apellido){
+    // Funcion para buscar un jugador por nombre y apellido
+    buscarJugador(nombre, apellido) {
         for (let i = 0; i < this.jugadores.length; i++) {
             if (this.jugadores[i].nombre === nombre && 
                 this.jugadores[i].apellido === apellido) {
@@ -71,5 +81,4 @@ class Equipo{
             }
         }
     }
-
 }

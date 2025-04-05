@@ -1,10 +1,11 @@
-class ModeloEquipo{
-    constructor(){
+class ModeloEquipo {
+    constructor() {
         this.contador = 0;
         this.equipos = [];
     }
 
-    agregarEquipo(nombre, ciudad, estadio){
+    // Funcion para agregar un nuevo equipo al modelo
+    agregarEquipo(nombre, ciudad, estadio) {
         const equipo = new Equipo(
             this.contador++,
             nombre,
@@ -15,12 +16,14 @@ class ModeloEquipo{
         this.equipos.push(equipo);
     }
 
-    obtenerEquipos(){
+    // Funcion para obtener la lista de equipos
+    obtenerEquipos() {
         return this.equipos;
     }
 
-    eliminarEquipo(nombre, ciudad){
-        id=this.buscarEquipo(nombre, ciudad);
+    // Funcion para eliminar un equipo del modelo por nombre y ciudad
+    eliminarEquipo(nombre, ciudad) {
+        id = this.buscarEquipo(nombre, ciudad);
 
         if (id != undefined) {
             for (let i = 0; i < this.equipos.length; i++) {
@@ -33,7 +36,8 @@ class ModeloEquipo{
         }
     }
 
-    buscarEquipo(nombre, ciudad){
+    // Funcion para buscar un equipo por nombre y ciudad
+    buscarEquipo(nombre, ciudad) {
         for (let i = 0; i < this.equipos.length; i++) {
             if (this.equipos[i].nombre === nombre && 
                 this.equipos[i].ciudad === ciudad) {
@@ -41,5 +45,4 @@ class ModeloEquipo{
             }
         }
     }
-
 }
