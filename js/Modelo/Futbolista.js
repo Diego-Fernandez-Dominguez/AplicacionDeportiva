@@ -25,6 +25,10 @@ class Futbolista {
         return this.posicion;
     }
 
+    getEquipo() {
+        return this.equipo;
+    }
+
     setNombre(nombre) {
         if (nombre != "") {
             this.nombre = nombre;
@@ -40,6 +44,12 @@ class Futbolista {
     setPosicion(posicion) {
         if (posicion != "") {
             this.posicion = posicion;
+        }    
+    }
+
+    setEdad(edad) {
+        if (edad != "") {
+            this.edad = edad;
         }    
     }
 

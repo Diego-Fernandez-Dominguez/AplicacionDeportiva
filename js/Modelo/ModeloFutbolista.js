@@ -19,6 +19,10 @@ class ModeloFutbolista{
 
     }
 
+    obtenerFutbolistas() {
+        return this.futbolistas;
+    }
+
     eliminarFutbolista(nombre, apellido) {
 
         id=this.buscarFutbolista(nombre, apellido);

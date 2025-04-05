@@ -4,7 +4,7 @@ class Equipo{
         this.nombre = nombre;
         this.ciudad = ciudad;
         this.estadio = estadio;
-        this.futbolistas = [];
+        this.jugadores = [];
     }
 
     getId(){
@@ -23,8 +23,8 @@ class Equipo{
         return this.estadio;
     }
 
-    getFutbolistas(){
-        return this.futbolistas;
+    getJugadores(){
+        return this.jugadores;
     }
 
     setNombre(nombre){
@@ -45,24 +45,31 @@ class Equipo{
         }
     }
 
-    agregarFutbolista(futbolista){
-        this.futbolistas.push(futbolista);
+    agregarJugador(jugador){
+        this.jugadores.push(jugador);
     }
 
-    eliminarFutbolista(idFutbolista){
-        for(let i = 0; i < this.futbolistas.length; i++){
-            if(this.futbolistas[i].getId() === idFutbolista){
-                this.futbolistas.splice(i, 1);
+    eliminarJugador(idFutbolista){
+        id=this.buscarJugador(nombre, apellido);
+
+        if (id != undefined) {
+
+        for (let i = 0; i < this.jugadores.length; i++) {
+            if (this.jugadores[i].id === id) {
+                this.jugadores.splice(i, 1);
                 break;
             }
         }
     }
-   /* buscarFutbolista(idFutbolista){
-        for(let i = 0; i < this.futbolistas.length; i++){
-            if(this.futbolistas[i].getId() === idFutbolista){
-                return this.futbolistas[i];
+    }
+
+    buscarJugador(nombre, apellido){
+        for (let i = 0; i < this.jugadores.length; i++) {
+            if (this.jugadores[i].nombre === nombre && 
+                this.jugadores[i].apellido === apellido) {
+                return this.jugadores[i].id;
             }
         }
-    }*/
+    }
 
 }
