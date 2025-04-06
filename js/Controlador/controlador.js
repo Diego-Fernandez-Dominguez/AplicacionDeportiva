@@ -2,6 +2,8 @@
 class Controlador {
     constructor(modelo) {
       this.modelo = modelo; // Instancia del Modelo que el Controlador va a utilizar
+      this.vista = new Vista();
+      this.vista.agregarJ();
     }
   
     // Método para agregar un jugador
@@ -42,5 +44,12 @@ class Controlador {
       }
     }
   }
+
+  window.addEventListener("DOMContentLoaded", () => {
+    const modeloE = new ModeloEquipo();
+    const modeloF = new ModeloFutbolista();
+    const appE = new Controlador(modeloE);
+    const appF = new Controlador(modeloF);
+});
   
     

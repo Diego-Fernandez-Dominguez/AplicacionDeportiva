@@ -35,19 +35,11 @@
 
 
 <!--Formularios a rellenar por los usuarios para las distintas funcionalidades-->
-    <dialog id="fAgregarJugador">
-        <form method="dialog">
-            <label>Nombre</label>
-            <input type="text" class="inputs" name="nombre" placeholder="Nombre" required><br><br>
-            <label>Apellidos</label>
-            <input type="text" class="inputs" name="apellidos" placeholder="Apellidos" required><br><br>
-            <label>Posicion</label>
-            <input type="text" class="inputs" name="posicion" placeholder="Posición" required><br><br>
-            <label>Edad</label>
-            <input type="number" class="inputs" name="Edad" placeholder="Edad" required><br><br>
-            <button class="btsEnviar">Agregar Jugador</button>
-        </form>
-    </dialog>    
+
+<div id="cfAgregarJ"></div>
+<div id="cfAgregarE"></div>
+<div id="cfAsignarJE"></div>
+  
 
     <dialog id="fAgregarEquipo">
         <form method="dialog">
@@ -76,6 +68,16 @@
     <!--Tablas de los conteos de jugadores por posicion y jugadores en cada equipo-->
     <div id="jugadoresPP"></div>
     <div id="jugadoresPE"></div>
+
+
+
+    <!--Enlace a los archivos-->
+    <script src="/js/Modelo/Equipo.js"></script>
+    <script src="/js/Modelo/Futbolista.js"></script>
+    <script src="/js/Modelo/ModeloEquipo.js"></script>
+    <script src="/js/Modelo/ModeloFutbolista.js"></script>
+    <script src="/js/Vista/vista.js"></script>
+    <script src="/js/Controlador/controlador.js"></script>
 
 </body>
 </html>
