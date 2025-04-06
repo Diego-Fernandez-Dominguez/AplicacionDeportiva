@@ -51,4 +51,8 @@ class ModeloFutbolista {
             }
         }
     }
+
+    contarFutbolistas() {
+        return this.futbolistas.length;
+    }
 }

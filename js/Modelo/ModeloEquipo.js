@@ -45,4 +45,8 @@ class ModeloEquipo {
             }
         }
     }
+
+    contarEquipos() {
+        return this.equipos.length;
+    }
 }
