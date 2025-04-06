@@ -1,45 +1,81 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset='utf-8'>
-    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>Aplicacion Deportiva</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Futbolistas</title>
 </head>
+
+<!--Título-->
 <body>
-    <h1>Aplicacion Deportiva</h1>
+    <div id="cTitle">
+        <h1 id="tTitle">Gestión de Futbolistas</h1>
+    </div>
 
-    <form id="formularioFutbolista">
-        <label for="nombre">Nombre:</label>
-        <input type="text" id="nombre" name="nombre" required><br><br>
+<!--Botones para las distintas funcionalidades-->    
+<div id="cBotones">
 
-        <label for="apellidos">Apellidos:</label>
-        <input type="text" id="apellidos" name="apellidos" required><br><br>
+    <div id="cBAgregarJ">
+        <button id="BAgregarJ">Agregar Jugador</button>
+    </div>
 
-        <label for="posicion">Posicion:</label>
-        <input type="text" id="posicion" name="email" required><br><br>
+    <div id="cBAgregarE">
+        <button id="BAgregarE">Agregar Equipo</button>
+    </div>
 
-        <label for="AñoNacimiento">AñoNacimiento:</label>
-        <input type="number" id="AñoNacimiento" name="AñoNacimiento" required><br><br>
+    <div id="cBAsignarJE">
+        <button id="BAsignarJE">Asignar Jugador a Equipo</button>
+    </div>
 
-        <label for="Equipo">Equipo:</label>
-        <input type="text" id="Equipo" name="Equipo" required><br><br>
+    <div id="cBShowStats">
+        <button id="BShowStats">Mostrar Estadísticas</button>
+    </div>
 
-        <button type="submit">Agregar</button>
-    </form>
-    <br><br>
-    <h2>Datos Recibidos:</h2>
-    <table id="datosJugadores" border="1">
-        <thead>
-        <tr>
-            <th>Nombre</th>
-            <th>Apellidos</th>
-            <th>Posicion</th>
-            <th>Año Nacimiento</th>
-            <th>Equipo</th>
-        </tr>
-    </thead>
-        <tbody id="lista-futbol"></tbody>
-    </table>
+</div>
+
+
+<!--Formularios a rellenar por los usuarios para las distintas funcionalidades-->
+    <dialog id="fAgregarJugador">
+        <form method="dialog">
+            <label>Nombre</label>
+            <input type="text" class="inputs" name="nombre" placeholder="Nombre" required><br><br>
+            <label>Apellidos</label>
+            <input type="text" class="inputs" name="apellidos" placeholder="Apellidos" required><br><br>
+            <label>Posicion</label>
+            <input type="text" class="inputs" name="posicion" placeholder="Posición" required><br><br>
+            <label>Edad</label>
+            <input type="number" class="inputs" name="Edad" placeholder="Edad" required><br><br>
+            <button class="btsEnviar">Agregar Jugador</button>
+        </form>
+    </dialog>    
+
+    <dialog id="fAgregarEquipo">
+        <form method="dialog">
+            <label>Nombre</label>
+            <input type="text" class="inputs" name="nombre" placeholder="Nombre" required><br><br>
+            <label>Ciudad</label>
+            <input type="text" class="inputs" name="ciudad" placeholder="Ciudad" required><br><br>
+            <label>Estadio</label>
+            <input type="text" class="inputs" name="estadio" placeholder="Estadio" required><br><br>
+            <button class="btsEnviar">Agregar Equipo</button>
+        </form>
+    </dialog>
+
+    <dialog id="fAsignarJugadorEquipo">
+        <form method="dialog">
+            <label>Nombre del Jugador</label>
+            <input type="text" class="inputs" name="nombreJugador" placeholder="Nombre del Jugador" required><br><br>
+            <label>Apellido del Jugador</label>
+            <input type="text" class="inputs" name="apellidosJugador" placeholder="Apellidos del Jugador" required><br><br>
+            <label>Nombre del Equipo</label>
+            <input type="text" class="inputs" name="nombreEquipo" placeholder="Nombre del Equipo" required><br><br>
+            <button class="btsEnviar">Asignar Jugador</button>
+        </form>
+    </dialog>
+
+    <!--Tablas de los conteos de jugadores por posicion y jugadores en cada equipo-->
+    <div id="jugadoresPP"></div>
+    <div id="jugadoresPE"></div>
 
 </body>
-</html></html>
+</html>
