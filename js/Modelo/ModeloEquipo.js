@@ -49,4 +49,23 @@ class ModeloEquipo {
     contarEquipos() {
         return this.equipos.length;
     }
+
+    // Funcion para contar el numero de jugadores por cada equipo
+    contarJugadoresPorCadaEquipo() {
+        const equipos = {};
+
+        for (let i = 0; i < this.equipos.length; i++) {
+            const equipo = this.equipos[i];
+            const equipoId = equipo.id;
+
+            if (!equipos[equipoId]) {
+                equipos[equipoId] = {
+                    nombre: equipo.nombre,
+                    jugadores: equipo.jugadores.length
+                };
+            }
+     }
+
+    return equipos;
+    }
 }
