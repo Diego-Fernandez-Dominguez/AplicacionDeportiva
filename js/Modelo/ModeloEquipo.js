@@ -12,8 +12,9 @@ class ModeloEquipo {
             ciudad,
             estadio
         );
-        localStorage.setItem("equipos", JSON.stringify(this.equipos));
         this.equipos.push(equipo);
+        localStorage.setItem("equipos", JSON.stringify(this.equipos));
+
     }
 
     // Funcion para obtener la lista de equipos

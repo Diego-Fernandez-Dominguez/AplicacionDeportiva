@@ -14,9 +14,9 @@ class ModeloFutbolista {
         posicion
         );
 
-        localStorage.setItem("futbolistas", JSON.stringify(this.futbolistas));
-
     this.futbolistas.push(futbolista);
+
+    localStorage.setItem("futbolistas", JSON.stringify(this.futbolistas));
 
     }
 
