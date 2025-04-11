@@ -32,20 +32,6 @@ class Equipo {
         return this.jugadores;
     }
 
-    // Funcion para establecer el nombre del equipo
-    setNombre(nombre) {
-        if (nombre != "") {
-            this.nombre = nombre;
-        }
-    }
-
-    // Funcion para establecer la ciudad del equipo
-    setCiudad(ciudad) {
-        if (ciudad != "") {
-            this.ciudad = ciudad;
-        }
-    }
-
     // Funcion para establecer el estadio del equipo
     setEstadio(estadio) {
         if (estadio != "") {

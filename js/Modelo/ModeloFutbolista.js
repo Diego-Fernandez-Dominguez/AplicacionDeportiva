@@ -63,4 +63,9 @@ class ModeloFutbolista {
         }
         return undefined;
     }
+
+    //Funcion que devuelve la cantidad de futbolistas en el modelo.
+    contarFutbolistas(){
+        return this.futbolistas.length;
+    }
 }

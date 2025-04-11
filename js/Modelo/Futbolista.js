@@ -34,20 +34,6 @@ class Futbolista {
         return this.equipo;
     }
 
-    // Funcion para establecer el nombre del futbolista
-    setNombre(nombre) {
-        if (nombre != "") {
-            this.nombre = nombre;
-        }
-    }
-
-    // Funcion para establecer el apellido del futbolista
-    setApellido(apellido) {
-        if (apellido != "") {
-            this.apellido = apellido;
-        }    
-    }
-
     // Funcion para establecer la posicion del futbolista
     setPosicion(posicion) {
         if (posicion != "") {
