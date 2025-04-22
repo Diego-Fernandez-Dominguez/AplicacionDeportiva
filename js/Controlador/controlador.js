@@ -1,77 +1,43 @@
 class Controlador {
   constructor() {
     this.vista = new Vista();
+    this.ModeloEquipo = new ModeloEquipo();
+    this.ModeloFutbolista = new ModeloFutbolista();
+    this.Equipo = new Equipo();
+    this.Futbolista = new Futbolista();
 
-    // Estructura para almacenar datos
-    this.jugadores = [];
-    this.equipos = [];
-
-    // Estadísticas: jugadores por posición
-    this.jugadoresPorPosicion = {
-      Porteros: 0,
-      Defensas: 0,
-      Delanteros: 0,
-      "Medio-Centros": 0,
-    };
-
-    // Estadísticas: jugadores por equipo
-    this.jugadoresPorEquipo = {};
-
+    
     // Inicializar eventos
     this.initEventos();
   }
 
   initEventos() {
-    // Agregar jugador
+    // Agregar jugador pop-up
     this.vista.renderAJugador();
-    const formJugador = document.getElementById("formulario");
-    formJugador.addEventListener("submit", (evento) => {
-      evento.preventDefault();
-      const datos = {
-        nombre: document.getElementById("nombre").value,
-        apellidos: document.getElementById("apellidos").value,
-        posicion: document.getElementById("posicion").value,
-        edad: parseInt(document.getElementById("edad").value),
-      };
-      this.agregarJugador(datos);
-      document.getElementById("fAgregarJugador").close();
-    });
 
-    // Agregar equipo
+
+    //Envio de datos del jugador al controlador
+    const botonSJ = document.getElementById("submitJ");
+    botonSJ.addEventListener("click", (evento) =>{
+      this.ModeloFutbolista.agregarFutbolista(this.vista.getDatosJugador());
+      console.log("Datos del jugador enviados al controlador");
+    })
+
+
+
     this.vista.renderAEquipo();
-    const formEquipo = document.querySelector("#fAgregarEquipo form");
-    formEquipo.addEventListener("submit", (evento) => {
-      evento.preventDefault();
-      const datos = {
-        nombre: formEquipo.nombre.value,
-        ciudad: formEquipo.ciudad.value,
-        estadio: formEquipo.estadio.value,
-      };
-      this.agregarEquipo(datos);
-      document.getElementById("fAgregarEquipo").close();
-    });
 
-    // Mostrar estadísticas
-    this.vista.BShowStats.addEventListener("click", () => {
-      this.vista.showstats(this.jugadoresPorPosicion, this.jugadoresPorEquipo);
-    });
+        //Envio de datos del jugador al controlador
+        const botonSE = document.getElementById("submitE");
+        botonSE.addEventListener("click", (evento) =>{
+          this.ModeloEquipo.agregarEquipo(this.vista.getDatosEquipo());
+          console.log("Datos del equipo enviados al controlador");
+        })
+
+    
+    this.vista.showstats(this.Equipo.contarJugadoresPorTodasLasPosiciones(), this.ModeloEquipo.contarJugadoresPorCadaEquipo());
   }
-
-  agregarJugador(jugador) {
-    this.jugadores.push(jugador);
-
-    // Aumentar contador de posición si es válida
-    if (this.jugadoresPorPosicion[jugador.posicion] !== undefined) {
-      this.jugadoresPorPosicion[jugador.posicion]++;
-    } else {
-      this.jugadoresPorPosicion[jugador.posicion] = 1;
-    }
-  }
-
-  agregarEquipo(equipo) {
-    this.equipos.push(equipo);
-    this.jugadoresPorEquipo[equipo.nombre] = 0;
-  }
+  
 }
 
 // Iniciar controlador cuando cargue el DOM
