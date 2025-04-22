@@ -12,13 +12,12 @@ class ModeloEquipo {
         //verificacion de datos de los equipos, no se pueden tener dos equipos con el
         // mismo nombre y ciudad
         const equipoExistente = this.equipos.find(equipo =>
-            equipo.nombre === objetoEquipo.nombre &&
-            equipo.ciudad === objetoEquipo.ciudad
+            equipo.nombre === objetoEquipo.nombre
         );
 
         //Si el equipo ya existe, no se agrega
         if(equipoExistente) {
-            console.log("Ya existe un equipo con ese nombre y ciudad.");
+            console.log("Ya existe un equipo con ese nombre.");
             return sePudo;
 
             //Si el equipo no existe, se agrega
@@ -46,8 +45,8 @@ class ModeloEquipo {
     }
 
     // Funcion para eliminar un equipo del modelo por nombre y ciudad
-    eliminarEquipo(nombre, ciudad) {
-        const id = this.buscarEquipo(nombre, ciudad);
+    eliminarEquipo(nombre) {
+        const id = this.buscarEquipo(nombre);
 
         if (id !== undefined) {
             let i = 0;
@@ -64,14 +63,13 @@ class ModeloEquipo {
     }
 
     // Funcion para buscar un equipo por nombre y ciudad
-    buscarEquipo(nombre, ciudad) {
+    buscarEquipo(nombre) {
         let i = 0;
 
         let sePudo = false;
 
         while (!sePudo && i < this.equipos.length) {
-            if (this.equipos[i].nombre === nombre && 
-                this.equipos[i].ciudad === ciudad) {
+            if (this.equipos[i].nombre === nombre) {
                     sePudo=true;
                 return this.equipos[i].id;
             }
@@ -96,6 +94,7 @@ class ModeloEquipo {
                 ciudad: equipo.ciudad,
                 jugadores: equipo.jugadores.length
             });
+
      }
 
     return equipos;
@@ -110,7 +109,7 @@ class ModeloEquipo {
         let objEquipo=valores[1]; 
 
             // Buscar el equipo por su nombre y ciudad
-            let idEquipo = this.buscarEquipo(objEquipo.nombre, objEquipo.ciudad);
+            let idEquipo = this.buscarEquipo(objEquipo.nombre);
             let equipo = this.equipos.find(equipo => equipo.id === idEquipo);
         
             if (!equipo) {
