@@ -5,12 +5,12 @@ class ModeloEquipo {
     }
 
     // Funcion para agregar un nuevo equipo al modelo
-    agregarEquipo(nombre, ciudad, estadio) {
+    agregarEquipo(objetoEquipo) {
         const equipo = new Equipo(
             this.contador++,
-            nombre,
-            ciudad,
-            estadio
+            objetoEquipo.nombre,
+            objetoEquipo.ciudad,
+            objetoEquipo.estadio
         );
         this.equipos.push(equipo);
         localStorage.setItem("equipos", JSON.stringify(this.equipos));

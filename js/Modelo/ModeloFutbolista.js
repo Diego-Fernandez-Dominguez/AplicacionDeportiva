@@ -5,13 +5,13 @@ class ModeloFutbolista {
     }
 
     // Funcion para agregar un nuevo futbolista al modelo
-    agregarFutbolista(nombre, apellido, edad, posicion) {
+    agregarFutbolista(objetoFutbolista) {
         const futbolista = new Futbolista(
         this.contador++,
-        nombre,
-        apellido,
-        edad,
-        posicion
+        objetoFutbolista.nombre,
+        objetoFutbolista.apellido,
+        objetoFutbolista.edad,
+        objetoFutbolista.posicion
         );
 
     this.futbolistas.push(futbolista);
