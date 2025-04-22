@@ -28,6 +28,11 @@ class Controlador {
       console.log("En el controlador:", datos);
       this.ModeloFutbolista.agregarFutbolista(datos);
       console.log("Datos del jugador enviados al controlador");
+      
+      //Actualizar la lista de jugadores en la vista si la tabla ya existe
+      if (document.getElementById("theadJPP")){
+        this.vista.showstats(this.ModeloFutbolista.contarJugadoresPorTodasLasPosiciones(), this.ModeloEquipo.contarJugadoresPorCadaEquipo());
+      }
     })
 
 
@@ -42,6 +47,11 @@ class Controlador {
           console.log("En el controlador:", datos);
           this.ModeloEquipo.agregarEquipo(datos);
           console.log("Datos del equipo enviados al controlador");
+
+          //Actualizar la lista de equipos en la vista si la tabla ya existe   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!POR HACER!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+          if (document.getElementById("")){
+            this.vista.showstats(this.ModeloFutbolista.contarJugadoresPorTodasLasPosiciones(), this.ModeloEquipo.contarJugadoresPorCadaEquipo());
+          }
         });
 
 

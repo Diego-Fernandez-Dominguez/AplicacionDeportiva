@@ -17,7 +17,7 @@ class Vista {
 
     //Relleno del encabezado
     theadJPP.innerHTML = ` 
-    <tr>
+    <tr id ="theadJPP">
       <th>Posición</th>
       <th>Número de Jugadores</th>
     </tr>`;
