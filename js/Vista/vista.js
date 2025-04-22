@@ -239,7 +239,7 @@ class Vista {
                   <div id="cInputEquipo">
                       <label for="equipos">Equipo</label>
                       <select name="equipos" id="sEquiposAJE">
-                          <option value="default">Selecciona un equipo</option>
+                          <option value="" disabled selected hidden id = "opcionAJE">Selecciona un equipo</option>
                       </select>
                   </div>
                   <div id = "cBAsignar">
@@ -252,10 +252,13 @@ class Vista {
 
     //Render de los equipos en el select
     ArrayEquipos.forEach((equipo)=>{
-      const opcion = document.getElementById("sEquiposAJE");
-      opcion.innerHTML = `
-      <option value = ${equipo.nombre}>${equipo.nombre}</option>
+      const select = document.getElementById("sEquiposAJE");
+      const option = document.createElement("option");
+      option.value = equipo.nombre;
+      option.innerHTML = `
+      ${equipo.nombre}
       `;
+      select.appendChild(option);
     })
 
     //Abrir el pop-up
@@ -270,5 +273,22 @@ class Vista {
     botonDeCierre.addEventListener("click", () => {
       dialog.close();
     });
+  }
+
+  getDatosAsignacion(){
+
+    //Recojida de datos
+    const datos = [
+      futbolista = {
+        nombre: document.getElementById("nombreAJE").value,
+        apellidos: document.getElementById("apellidosAJE").value
+      },
+      equipo = {
+        nombre: document.getElementById("opcionAJE").value
+      }
+    ];
+
+    //Envio de datos
+    return datos;
   }
 }

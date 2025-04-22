@@ -48,20 +48,28 @@ class Controlador {
           this.ModeloEquipo.agregarEquipo(datos);
           console.log("Datos del equipo enviados al controlador");
 
-          //Actualizar la lista de equipos en la vista si la tabla ya existe   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!POR HACER!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+          //Actualizar la lista de equipos en la vista si la tabla ya existe
           if (document.getElementById("theadJE")){
             this.vista.showstats(this.ModeloFutbolista.contarJugadoresPorTodasLasPosiciones(), this.ModeloEquipo.contarJugadoresPorCadaEquipo());
           }
         });
 
-
+        //Funcionalidad del boton para mostrar las stats
         const botonST = document.getElementById("BShowStats");
         botonST.addEventListener("click", () => {
           this.vista.showstats(this.ModeloFutbolista.contarJugadoresPorTodasLasPosiciones(), this.ModeloEquipo.contarJugadoresPorCadaEquipo());
         })
       
-      
-    this.vista.renderAJE();
+        //Render de la asignacion de los jugadores a los equipos
+        this.vista.renderAJE(this.ModeloEquipo.obtenerEquipos());
+
+        //Funcionalidad del boton para asignar el jugador al equipo
+        const formularioAJE = document.getElementById("dAJE")
+        formularioAJE.addEventListener("submit", (evento)=>{
+          evento.preventDefault();
+
+          
+        })
       };
 }
 
