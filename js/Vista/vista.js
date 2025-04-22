@@ -276,17 +276,26 @@ class Vista {
   }
 
   getDatosAsignacion(){
-
+    
     //Recojida de datos
+    const futbolista = {
+      nombre: document.getElementById("nombreAJE").value,
+      apellidos: document.getElementById("apellidosAJE").value
+    }
+
+    const equipo = {
+      nombre: document.getElementById("sEquiposAJE").value
+    }
+    
     const datos = [
-      futbolista = {
-        nombre: document.getElementById("nombreAJE").value,
-        apellidos: document.getElementById("apellidosAJE").value
-      },
-      equipo = {
-        nombre: document.getElementById("opcionAJE").value
-      }
+      futbolista,
+      equipo
     ];
+
+    //Limpio los datos del formulario
+    document.getElementById("nombreAJE").value = "";
+    document.getElementById("apellidosAJE").value = "";
+    document.getElementById("sEquiposAJE").selectedIndex = 0;
 
     //Envio de datos
     return datos;

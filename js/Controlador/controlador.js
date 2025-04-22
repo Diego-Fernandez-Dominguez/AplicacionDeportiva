@@ -67,8 +67,9 @@ class Controlador {
         const formularioAJE = document.getElementById("dAJE")
         formularioAJE.addEventListener("submit", (evento)=>{
           evento.preventDefault();
-
-          
+          const datos = this.vista.getDatosAsignacion();
+          console.log("En el controlador:", datos);
+          this.ModeloEquipo.agregarJugadorAEquipo(datos);
         })
       };
 }
