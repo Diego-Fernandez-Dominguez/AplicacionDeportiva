@@ -109,15 +109,16 @@ class ModeloEquipo {
         
         let objEquipo=valores[1]; 
 
-            // Buscar el equipo por su ID
-            const equipo = this.equipos.find(e => e.id === objEquipo.id);
+            // Buscar el equipo por su nombre y ciudad
+            let idEquipo = this.buscarEquipo(objEquipo.nombre, objEquipo.ciudad);
+            let equipo = this.equipos.find(equipo => equipo.id === idEquipo);
         
             if (!equipo) {
                 console.log(`No se encontró un equipo`);
             }
 
             //Comprobamos si el futbolista existe
-            let idFut = ModeloFutbolista.buscarFutbolista(jugador.nombre, jugador.apellido);
+            let idFut = ModeloFutbolista.buscarFutbolista(jugador.nombre, jugador.apellidos);
             
             if (idFut == undefined) {
                 console.log("El futbolista no existe.");
@@ -139,7 +140,6 @@ class ModeloEquipo {
             return sePudo;
             
         }
-    
 
     cargarEquipos(){
         return JSON.parse(localStorage.getItem("equipos")) || [];
