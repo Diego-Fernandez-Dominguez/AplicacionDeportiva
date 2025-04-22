@@ -82,7 +82,7 @@ class Equipo {
 
     for (let i = 0; i < this.jugadores.length; i++) {
         const posicion = this.jugadores[i].posicion.toLowerCase();
-        if (posiciones.includes(posicion)) {
+        if (posiciones.hasOwnProperty(posicion)) {
             posiciones[posicion]++;
         }
     }
