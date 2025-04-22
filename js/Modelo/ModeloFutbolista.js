@@ -1,8 +1,9 @@
 class ModeloFutbolista {
   constructor() {
-    this.contador = 0;
+    this.contador = parseInt(localStorage.getItem("contadorJugadores")) || 0;
     this.futbolistas = this.cargarFutbolistas();
     this.futbolista = new Futbolista();
+
   }
 
   // Funcion para agregar un nuevo futbolista al modelo
@@ -40,6 +41,7 @@ class ModeloFutbolista {
       console.log(this.futbolistas);
 
       localStorage.setItem("futbolistas", JSON.stringify(this.futbolistas));
+      localStorage.setItem("contadorJugadores", this.contador); // Guarda el contador
 
       return sePudo;
     }
@@ -74,7 +76,7 @@ class ModeloFutbolista {
   buscarFutbolista(nombre, apellido) {
 
     let i = 0;
-
+    
     let sePudo = true;
 
     while (sePudo && i < this.futbolistas.length) {
@@ -87,7 +89,7 @@ class ModeloFutbolista {
       }
       i++;
     }
-    return undefined;
+    return -1;
   }
 
   //Funcion que devuelve la cantidad de futbolistas en el modelo.
@@ -114,17 +116,6 @@ class ModeloFutbolista {
     console.log(this.futbolistas);
 
     return posiciones;
-  }
-
-  agregarFutbolistaAlEquipo(idFutbolista, idEquipo) {
-    const futbolista = this.futbolistas.find(
-      (futbolista) => futbolista.id === idFutbolista
-    );
-
-    if (futbolista) {
-      this.agregarEquipo(idEquipo);
-      localStorage.setItem("futbolistas", JSON.stringify(this.futbolistas));
-    }
   }
 
       // Funcion para agregar un equipo al futbolista

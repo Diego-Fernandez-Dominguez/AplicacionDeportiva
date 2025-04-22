@@ -286,6 +286,7 @@ class Vista {
     const equipo = {
       nombre: document.getElementById("sEquiposAJE").value
     }
+    console.log(equipo.nombre)
     
     const datos = [
       futbolista,

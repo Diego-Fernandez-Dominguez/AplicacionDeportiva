@@ -6,7 +6,6 @@ class Futbolista {
         this.apellido = apellido;
         this.edad = edad;
         this.posicion = posicion;
-        this.equipo = [];
     }
 
     // Funcion para obtener el ID del futbolista
@@ -27,11 +26,6 @@ class Futbolista {
     // Funcion para obtener la posicion del futbolista
     getPosicion() {
         return this.posicion;
-    }
-
-    // Funcion para obtener el equipo del futbolista
-    getEquipo() {
-        return this.equipo;
     }
 
     // Funcion para establecer la posicion del futbolista

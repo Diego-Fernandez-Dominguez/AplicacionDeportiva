@@ -1,7 +1,7 @@
 class ModeloEquipo {
 
     constructor() {
-        this.contador = 0;
+        this.contador = parseInt(localStorage.getItem("contadorEquipos")) || 0;
         this.equipos = this.cargarEquipos();
         this.modeloFutbolista = new ModeloFutbolista(); // Instancia directa de ModeloFutbolista
     }
@@ -31,6 +31,7 @@ class ModeloEquipo {
 
             this.equipos.push(equipo);
             localStorage.setItem("equipos", JSON.stringify(this.equipos));
+            localStorage.setItem("contadorEquipos", this.contador); // Guarda el contador
             return sePudo;
         }
     }
@@ -96,48 +97,54 @@ class ModeloEquipo {
     return equipos;
     }
 
-    // Funcion para agregar un jugador a un equipo
     agregarJugadorAEquipo(valores) {
         let sePudo = false;
-
         let jugador = valores[0];
         let objEquipo = valores[1];
-
-        console.log(valores);
-
-        // Buscar el equipo por su nombre
+    
         let idEquipo = this.buscarEquipo(objEquipo.nombre);
-        let equipo = this.equipos.find(equipo => equipo.id === idEquipo);
-
+    
+        // Obtener referencia al equipo
+        let equipo = this.equipos.find(e => e.id === idEquipo);
+    
         if (!equipo) {
-            console.log(`No se encontró un equipo`);
+            console.log(`No se encontró un equipo con el nombre ${objEquipo.nombre}`);
             return sePudo;
         }
-
-        console.log(jugador.apellidos);
-
-        // Comprobamos si el futbolista existe
+    
+        console.log(this.equipos);
+    
+        // Buscar el futbolista
         let idFut = this.modeloFutbolista.buscarFutbolista(jugador.nombre, jugador.apellidos);
-
-        if (idFut == undefined) {
+    
+        if (idFut === undefined) {
             console.log("El futbolista no existe.");
-        } else {
-            // Si el futbolista existe, lo agregamos al equipo
-            if (!Array.isArray(equipo.jugadores)) {
-                equipo.jugadores = [];
-            }
-            equipo.jugadores.push(jugador);
-            sePudo = true;
-
-            // Agregar el equipo al futbolista
-            this.modeloFutbolista.agregarFutbolistaAlEquipo(idFut, equipo.id);
-
-            console.log(`Futbolista ${jugador.nombre} ${jugador.apellidos} agregado al equipo ${equipo.nombre}`);
-
-            // Guardar los cambios en localStorage
-            localStorage.setItem("equipos", JSON.stringify(this.equipos));
+            return sePudo;
         }
-
+    
+        // Verificar si el futbolista ya está en el equipo
+        if (equipo.jugadores.some(j => j.id === idFut)) {
+            console.log(`El futbolista ${jugador.nombre} ${jugador.apellidos} ya pertenece al equipo ${equipo.nombre}.`);
+            return sePudo;
+        }
+    
+        // Obtener referencia al futbolista
+        const futbolista = this.modeloFutbolista.futbolistas.find(f => f.id === idFut);
+    
+        if (!futbolista) {
+            console.log("No se encontró el futbolista en la lista de futbolistas.");
+            return sePudo;
+        }
+    
+        console.log(`Futbolista ${futbolista.nombre} ${futbolista.apellido} agregado al equipo ${equipo.nombre}`);
+    
+        // Agregar el futbolista al equipo
+        equipo.jugadores.push(futbolista);
+    
+        // Guardar los cambios en localStorage
+        localStorage.setItem("equipos", JSON.stringify(this.equipos));
+    
+        sePudo = true;
         return sePudo;
     }
 
