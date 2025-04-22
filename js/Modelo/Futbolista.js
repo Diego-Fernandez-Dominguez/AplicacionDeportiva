@@ -48,9 +48,4 @@ class Futbolista {
         }    
     }
 
-    // Funcion para agregar un equipo al futbolista
-    agregarEquipo(idEquipo) {
-        this.equipo.push(equipo);
-    }
-
 }

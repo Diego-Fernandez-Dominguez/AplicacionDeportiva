@@ -2,6 +2,7 @@ class ModeloFutbolista {
   constructor() {
     this.contador = 0;
     this.futbolistas = this.cargarFutbolistas();
+    this.futbolista = new Futbolista();
   }
 
   // Funcion para agregar un nuevo futbolista al modelo
@@ -23,16 +24,20 @@ class ModeloFutbolista {
 
       //Si el futbolista no existe, se agrega
     } else {
+
       sePudo = true;
+
       const futbolista = new Futbolista(
         this.contador++,
         objetoFutbolista.nombre,
-        objetoFutbolista.apellido,
+        objetoFutbolista.apellidos,
         objetoFutbolista.edad,
         objetoFutbolista.posicion
       );
 
       this.futbolistas.push(futbolista);
+
+      console.log(this.futbolistas);
 
       localStorage.setItem("futbolistas", JSON.stringify(this.futbolistas));
 
@@ -67,11 +72,12 @@ class ModeloFutbolista {
 
   // Funcion para buscar un futbolista por nombre y apellido
   buscarFutbolista(nombre, apellido) {
+
     let i = 0;
 
-    let sePudo = false;
+    let sePudo = true;
 
-    while (!sePudo === false && i < this.futbolistas.length) {
+    while (sePudo && i < this.futbolistas.length) {
       if (
         this.futbolistas[i].nombre === nombre &&
         this.futbolistas[i].apellido === apellido
@@ -97,8 +103,6 @@ class ModeloFutbolista {
       mediocentro: 0,
     };
 
-    console.log(this.futbolistas);
-
     for (let i = 0; i < this.futbolistas.length; i++) {
       const posicion = this.futbolistas[i].posicion.toLowerCase();
       if (posiciones.hasOwnProperty(posicion)) {
@@ -116,11 +120,17 @@ class ModeloFutbolista {
     const futbolista = this.futbolistas.find(
       (futbolista) => futbolista.id === idFutbolista
     );
+
     if (futbolista) {
-      futbolista.agregarEquipo(idEquipo);
+      this.agregarEquipo(idEquipo);
       localStorage.setItem("futbolistas", JSON.stringify(this.futbolistas));
     }
   }
+
+      // Funcion para agregar un equipo al futbolista
+    agregarEquipo(idEquipo) {
+        this.futbolista.equipo.push(idEquipo);
+    }
 
   cargarFutbolistas() {
     return JSON.parse(localStorage.getItem("futbolistas")) || [];
