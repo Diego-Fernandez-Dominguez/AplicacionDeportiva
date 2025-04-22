@@ -39,11 +39,6 @@ class Equipo {
         }
     }
 
-    // Funcion para agregar un jugador al equipo
-    agregarJugador(jugador) {
-        this.jugadores.push(jugador);
-    }
-
     // Funcion para eliminar un jugador del equipo
     eliminarJugador(idFutbolista) {
         id = this.buscarJugador(nombre, apellido);
