@@ -7,8 +7,9 @@ class Vista {
   }
 
   //Mostrar las stats
-  showstats(jugadoresPP, jugadoresPE) {
-    //Limpiar lo que tenga dentro el html
+  showstats(jugadoresPP, jugadoresPE) {    
+    BShowStats.addEventListener("click", (evento) => {
+          //Limpiar lo que tenga dentro el html
     const contenedorP = document.getElementById("jugadoresPP");
     const contenedorE = document.getElementById("jugadoresPE");
 
@@ -41,7 +42,7 @@ class Vista {
       columnaPos.textContent = posicion;
 
       const columnaCant = document.createElement("td");
-      columnaCant.textContent = jugadoresPP[pos];
+      columnaCant.textContent = jugadoresPP[posicion];
 
       fila.appendChild(columnaPos);
       fila.appendChild(columnaCant);
@@ -84,6 +85,7 @@ class Vista {
     //Añado las tablas a los contenedores
     contenedorP.appendChild(tablaP);
     contenedorE.appendChild(tablaE);
+    });
   }
 
   //Pop-up de agregar el jugador
@@ -92,9 +94,9 @@ class Vista {
 
     container.innerHTML = `
                 <dialog id="fAgregarJugador">
-                <button type = "button" id = "XDeCierre"></button>
+                <button type = "button" id = "XDeCierre">X</button>
                 <h3>Agregar Jugador</h3>
-                    <form id = "formulario" method="dialog">
+                    <form id = "formularioJ" method="dialog">
                         <label>Nombre</label>
                         <input type="text" class="inputs" id="nombre" name="nombre" placeholder="Nombre" required><br><br>
                         <label>Apellidos</label>
@@ -103,7 +105,7 @@ class Vista {
                         <input type="text" class="inputs" id = "posicion" name="posicion" placeholder="Posición" required><br><br>
                         <label>Edad</label>
                         <input type="number" class="inputs" id = "edad" name="Edad" placeholder="Edad" required><br><br>
-                        <button class="btsEnviar">Agregar Jugador</button>
+                        <button class="btsEnviar" id = "submitJ" >Agregar Jugador</button>
                     </form>
                 </dialog>  
             `;
@@ -125,7 +127,7 @@ class Vista {
   //Captura de los datos del jugador
   getDatosJugador() {
     //Captura de datos y envio al controlador
-    const formulario = document.getElementById("formulario");
+    const formulario = document.getElementById("formularioJ");
 
     //Al envio del formulario, se recojen los datos, se envian al controlador y se cierra el pop-up
     formulario.addEventListener("submit", (evento) => {
@@ -146,6 +148,8 @@ class Vista {
       document.getElementById("posicion").value = "";
       document.getElementById("edad").value = "";
 
+      console.log(datos);
+
       //Envio datos al controlador
       return datos;
     });
@@ -153,32 +157,32 @@ class Vista {
 
   //Pop-up de agregar el equipo
   renderAEquipo() {
-    const container = getElementById("cfAgregarE");
+    const container = document.getElementById("cfAgregarE");
     container.innerHTML = `
             <dialog id="fAgregarEquipo">
-                <form method="dialog">
-                <button type = "button" id = "XDeCierre"></button>
+                <form method="dialog" id = "formulario">
+                <button type = "button" id = "XDeCierreE">X</button>
                 <h3>Agregar Equipo</h3>
                 <label>Nombre</label>
-                <input type="text" class="inputs" name="nombre" placeholder="Nombre" required><br><br>
+                <input type="text" id = "nombreE" class="inputs" name="nombre" placeholder="Nombre"  required><br><br>
                 <label>Ciudad</label>
-                <input type="text" class="inputs" name="ciudad" placeholder="Ciudad" required><br><br>
+                <input type="text"  id = "ciudad" class="inputs" name="ciudad" placeholder="Ciudad" required><br><br>
                 <label>Estadio</label>
-                <input type="text" class="inputs" name="estadio" placeholder="Estadio" required><br><br>
-                <button class="btsEnviar">Agregar Equipo</button>
+                <input type="text"  id = "estadio" class="inputs" name="estadio" placeholder="Estadio" required><br><br>
+                <button class="btsEnviar" id = "submitE">Agregar Equipo</button>
                 </form>
             </dialog>
             `;
 
     //Abrir el pop-up
-    const dialog = getElementById("fAgregarEquipo");
-    const bAbrir = getElementById("BAgregarE");
+    const dialog = document.getElementById("fAgregarEquipo");
+    const bAbrir = document.getElementById("BAgregarE");
     bAbrir.addEventListener("click", () => {
       dialog.showModal();
     });
 
     //Cerrar el pop-up con la x
-    const bCierre = getElementById("XDeCierre");
+    const bCierre = document.getElementById("XDeCierreE");
     bCierre.addEventListener("click", () => {
       dialog.close();
     });
@@ -196,13 +200,13 @@ class Vista {
 
       //Recojo datos
       const datos = {
-        nombre : getElementById("nombre"),
-        ciudad : getElementById("ciudad"),
-        estadio : getElementById("estadio"),
+        nombre : document.getElementById("nombreE"),
+        ciudad : document.getElementById("ciudad"),
+        estadio : document.getElementById("estadio"),
       };
 
       //Limpio los datos de los inputs
-      document.getElementById("nombre").value = "";
+      document.getElementById("nombreE").value = "";
       document.getElementById("ciudad").value = "";
       document.getElementById("estadio").value = "";
 
