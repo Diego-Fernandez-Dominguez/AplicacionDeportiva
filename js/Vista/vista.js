@@ -263,7 +263,7 @@ class Vista {
 
     //Abrir el pop-up
     const dialog = document.getElementById("dAJE");
-    const botonDeAbertura = document.getElementById("cBAsignarJE");
+    const botonDeAbertura = document.getElementById("BAsignarJE");
     botonDeAbertura.addEventListener("click", () => {
       dialog.showModal();
     });
