@@ -27,7 +27,7 @@ class Vista {
 
     //Creacion del cuerpo
     const tbodyJPP = document.createElement("tbody");
-    
+
     //Relleno del cuerpo
     tbodyJPP.innerHTML = `
     <tr>
@@ -49,19 +49,61 @@ class Vista {
     <td>Mediocentro</td>
       <td>${jugadoresPP.mediocentro}</td>
     </tr>`;
-    
-    
+
     //Appendeo del cuerpo a la tabla
     tablaJPP.appendChild(tbodyJPP);
 
     //Contenedor de la tabla
-    const contenedorTabla = document.getElementById("cShowStats");
-    
+    const contenedorTabla = document.getElementById("cShowStatsJP");
+
     //Limpio el contenedor de la tabla
-    contenedorTabla.innerHTML = "";
+    contenedorTabla.innerHTML = ``;
 
     //Asignacion de valores a la tabla
     contenedorTabla.appendChild(tablaJPP);
+
+    //Tabla de jugadores por equipo
+    const tablaJE = document.createElement("table");
+    tablaJE.border = "1";
+
+    //Encabezado de los jugadores por posicion
+    const theadJE = document.createElement("thead");
+
+    //Relleno del encabezado
+    theadJE.innerHTML = ` 
+    <tr id ="theadJE">
+      <th>Equipo</th>
+      <th>Número de Jugadores</th>
+    </tr>`;
+
+    //Appendeo del encabezado a la tabla
+    tablaJE.appendChild(theadJE);
+
+    //Creacion del cuerpo
+    const tbodyJE = document.createElement("tbody");
+
+    //Relleno del cuerpo
+    jugadoresPE.forEach((element) => {
+      const fila = document.createElement("tr");
+      fila.innerHTML = `
+        <td>${element.nombre}</td>
+        <td>${element.jugadores}</td>
+      `;
+
+      tbodyJE.appendChild(fila);
+    });
+
+    //Append a la tabla
+    tablaJE.appendChild(tbodyJE);
+
+    //Contenedor de la tabla
+    const containerJE = document.getElementById("cShowStatsJE");
+
+    //Vacio el contenedor
+    containerJE.innerHTML = ``;
+
+    //Append al contenedor
+    containerJE.appendChild(tablaJE);
   }
 
   //Pop-up de agregar el jugador
@@ -102,24 +144,24 @@ class Vista {
 
   //Captura de los datos del jugador
   getDatosJugador() {
-      //Recojo datos
-      const datos = {
-        nombre: document.getElementById("nombre").value,
-        apellidos: document.getElementById("apellido").value,
-        posicion: document.getElementById("posicion").value,
-        edad: parseInt(document.getElementById("edad").value),
-      };
+    //Recojo datos
+    const datos = {
+      nombre: document.getElementById("nombre").value,
+      apellidos: document.getElementById("apellido").value,
+      posicion: document.getElementById("posicion").value,
+      edad: parseInt(document.getElementById("edad").value),
+    };
 
-      //Limpio los datos de los inputs
-      document.getElementById("nombre").value = "";
-      document.getElementById("apellido").value = "";
-      document.getElementById("posicion").value = "";
-      document.getElementById("edad").value = "";
+    //Limpio los datos de los inputs
+    document.getElementById("nombre").value = "";
+    document.getElementById("apellido").value = "";
+    document.getElementById("posicion").value = "";
+    document.getElementById("edad").value = "";
 
-      console.log("En la vista" + datos);
+    console.log("En la vista" + datos);
 
-      //Envio datos al controlador
-      return datos;
+    //Envio datos al controlador
+    return datos;
   }
 
   //Pop-up de agregar el equipo
@@ -157,19 +199,76 @@ class Vista {
 
   //Captura de datos del equipo
   getDatosEquipo() {
-      //Recojo datos
-      const datos = {
-        nombre : document.getElementById("nombreE").value,
-        ciudad : document.getElementById("ciudad").value,
-        estadio : document.getElementById("estadio").value,
-      };
+    //Recojo datos
+    const datos = {
+      nombre: document.getElementById("nombreE").value,
+      ciudad: document.getElementById("ciudad").value,
+      estadio: document.getElementById("estadio").value,
+    };
 
-      //Limpio los datos de los inputs
-      document.getElementById("nombreE").value = "";
-      document.getElementById("ciudad").value = "";
-      document.getElementById("estadio").value = "";
+    //Limpio los datos de los inputs
+    document.getElementById("nombreE").value = "";
+    document.getElementById("ciudad").value = "";
+    document.getElementById("estadio").value = "";
 
-      //Envio datos al controlador
-      return datos;
+    //Envio datos al controlador
+    return datos;
+  }
+
+  renderAJE(ArrayEquipos) {
+    //Pop-up
+    const contenedor = document.getElementById("cfAsignarJE");
+    contenedor.innerHTML = `
+      <div id="cFormularioAJE">
+          <dialog id="dAJE">
+            <div id="cBAJE">
+              <button id="XDeCierreAJE">X</button>
+            </div>
+            <div id = "cTituloAJE">
+              <h3 id="tTituloAJE">Asignar Jugador a Equipo</h3>
+            </div>
+              <form method="dialog">
+                  <div id="cInputJugador">
+                      <label for="nombre">Nombre del Jugador</label>
+                      <input type="text" class="inputs" id="nombreAJE" name="nombre" placeholder="Nombre" required>
+
+                      <label for="apellidos">Apellidos del Jugador</label>
+                      <input type="text" class="inputs" id="apellidosAJE" name="apellidos" placeholder="Apellidos" required>
+                  </div>
+
+                  <div id="cInputEquipo">
+                      <label for="equipos">Equipo</label>
+                      <select name="equipos" id="sEquiposAJE">
+                          <option value="default">Selecciona un equipo</option>
+                      </select>
+                  </div>
+                  <div id = "cBAsignar">
+                    <button id = "bAsignar">Asignar</button>
+                  </div>
+              </form>
+          </dialog>
+      </div>
+    `;
+
+    //Render de los equipos en el select
+    ArrayEquipos.forEach((equipo)=>{
+      const opcion = document.getElementById("sEquiposAJE");
+      opcion.innerHTML = `
+      <option value = ${equipo.nombre}>${equipo.nombre}</option>
+      `;
+    })
+
+    //Abrir el pop-up
+    const dialog = document.getElementById("dAJE");
+    const botonDeAbertura = document.getElementById("cBAsignarJE");
+    botonDeAbertura.addEventListener("click", () => {
+      dialog.showModal();
+    });
+
+    //Cerrar el dialog con la X
+    const botonDeCierre = document.getElementById("XDeCierreAJE");
+    botonDeCierre.addEventListener("click", () => {
+      dialog.close();
+    });
   }
 }
