@@ -49,7 +49,7 @@ class Controlador {
           console.log("Datos del equipo enviados al controlador");
 
           //Actualizar la lista de equipos en la vista si la tabla ya existe   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!POR HACER!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-          if (document.getElementById("")){
+          if (document.getElementById("theadJE")){
             this.vista.showstats(this.ModeloFutbolista.contarJugadoresPorTodasLasPosiciones(), this.ModeloEquipo.contarJugadoresPorCadaEquipo());
           }
         });
@@ -58,7 +58,11 @@ class Controlador {
         const botonST = document.getElementById("BShowStats");
         botonST.addEventListener("click", () => {
           this.vista.showstats(this.ModeloFutbolista.contarJugadoresPorTodasLasPosiciones(), this.ModeloEquipo.contarJugadoresPorCadaEquipo());
-        })};
+        })
+      
+      
+    this.vista.renderAJE();
+      };
 }
 
 // Iniciar controlador cuando cargue el DOM
