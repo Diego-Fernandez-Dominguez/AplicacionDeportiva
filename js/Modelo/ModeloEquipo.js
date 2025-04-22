@@ -1,7 +1,7 @@
 class ModeloEquipo {
     constructor() {
         this.contador = 0;
-        this.equipos = [];
+        this.equipos = this.cargarEquipos();
     }
 
     // Funcion para agregar un nuevo equipo al modelo
@@ -78,5 +78,9 @@ class ModeloEquipo {
      }
 
     return equipos;
+    }
+
+    cargarEquipos(){
+        return JSON.parse(localStorage.getItem("equipos")) || [];
     }
 }

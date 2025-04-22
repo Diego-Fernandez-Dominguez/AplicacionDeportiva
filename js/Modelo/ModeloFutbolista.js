@@ -1,7 +1,7 @@
 class ModeloFutbolista {
     constructor() {
         this.contador = 0;
-        this.futbolistas = this.cargar();
+        this.futbolistas = this.cargarFutbolistas();
     }
 
     // Funcion para agregar un nuevo futbolista al modelo
@@ -94,7 +94,7 @@ class ModeloFutbolista {
         return posiciones;
     }
 
-    cargar(){
+    cargarFutbolistas(){
         return JSON.parse(localStorage.getItem("futbolistas")) || [];
     }
 }
