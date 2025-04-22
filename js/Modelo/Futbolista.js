@@ -16,7 +16,7 @@ class Futbolista {
 
     // Funcion para obtener el nombre completo del futbolista
     getNombreCompleto() {
-        return `${this.nombre} ${this.apellido}`;
+        return this.nombre + " " + this.apellido;
     }
 
     // Funcion para obtener la edad del futbolista
