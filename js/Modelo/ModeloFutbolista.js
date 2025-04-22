@@ -69,4 +69,28 @@ class ModeloFutbolista {
     contarFutbolistas(){
         return this.futbolistas.length;
     }
+
+    contarJugadoresPorTodasLasPosiciones() {
+        const posiciones = {
+            portero: 0,
+            defensa: 0,
+            delantero: 0,
+            mediocentro: 0
+        };
+
+        console.log(this.futbolistas);
+
+    
+        for (let i = 0; i < this.futbolistas.length; i++) {
+            const posicion = this.futbolistas[i].posicion.toLowerCase();
+            if (posiciones.hasOwnProperty(posicion)) {
+                posiciones[posicion]++;
+            }
+        }
+    
+        console.log(posiciones);
+        console.log(this.futbolistas);
+    
+        return posiciones;
+    }
 }

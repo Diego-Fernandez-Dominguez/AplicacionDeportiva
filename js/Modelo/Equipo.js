@@ -71,26 +71,5 @@ class Equipo {
     contarJugadores() {
         return this.jugadores.length;
     }
-    
-    contarJugadoresPorTodasLasPosiciones() {
-    const posiciones = {
-        portero: 0,
-        defensa: 0,
-        delantero: 0,
-        mediocentro: 0
-    };
 
-    
-
-    for (let i = 0; i < this.jugadores.length; i++) {
-        const posicion = this.jugadores[i].posicion.toLowerCase();
-        if (posiciones.hasOwnProperty(posicion)) {
-            posiciones[posicion]++;
-        }
-    }
-
-    console.log(posiciones);
-
-    return posiciones;
-}
 }

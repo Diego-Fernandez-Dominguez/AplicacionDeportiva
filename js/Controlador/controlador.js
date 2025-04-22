@@ -47,7 +47,7 @@ class Controlador {
 
         const botonST = document.getElementById("BShowStats");
         botonST.addEventListener("click", () => {
-          this.vista.showstats(this.Equipo.contarJugadoresPorTodasLasPosiciones(), this.ModeloEquipo.contarJugadoresPorCadaEquipo());
+          this.vista.showstats(this.ModeloFutbolista.contarJugadoresPorTodasLasPosiciones(), this.ModeloEquipo.contarJugadoresPorCadaEquipo());
         })};
 }
 
