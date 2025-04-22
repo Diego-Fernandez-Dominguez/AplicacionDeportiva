@@ -11,33 +11,41 @@ class Controlador {
     this.initEventos();
   }
 
+  //Inicializar eventos y manejar el envio de datos a los diferentes modelos
   initEventos() {
     // Agregar jugador pop-up
     this.vista.renderAJugador();
 
 
     //Envio de datos del jugador al controlador
-    const botonSJ = document.getElementById("submitJ");
-    botonSJ.addEventListener("click", (evento) =>{
-      this.ModeloFutbolista.agregarFutbolista(this.vista.getDatosJugador());
+    const formularioJ = document.getElementById("formularioJ")
+    formularioJ.addEventListener("submit", (evento) =>{
+      evento.preventDefault();
+      
+
+      const datos = this.vista.getDatosJugador();
+      
+      console.log("En el controlador:", datos);
+      this.ModeloFutbolista.agregarFutbolista(datos);
       console.log("Datos del jugador enviados al controlador");
     })
 
 
-
+    //Render del pop-up para agregar el equipo
     this.vista.renderAEquipo();
 
         //Envio de datos del jugador al controlador
-        const botonSE = document.getElementById("submitE");
-        botonSE.addEventListener("click", (evento) =>{
-          this.ModeloEquipo.agregarEquipo(this.vista.getDatosEquipo());
+        const formularioE = document.getElementById("formularioE");
+        formularioE.addEventListener("submit", (evento) =>{
+          evento.preventDefault();
+          const datos = this.vista.getDatosEquipo();
+          console.log("En el controlador:", datos);
+          this.ModeloEquipo.agregarEquipo(datos);
           console.log("Datos del equipo enviados al controlador");
-        })
+        });
 
-    
     this.vista.showstats(this.Equipo.contarJugadoresPorTodasLasPosiciones(), this.ModeloEquipo.contarJugadoresPorCadaEquipo());
   }
-  
 }
 
 // Iniciar controlador cuando cargue el DOM

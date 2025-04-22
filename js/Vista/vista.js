@@ -8,85 +8,67 @@ class Vista {
 
   //Mostrar las stats
   showstats(jugadoresPP, jugadoresPE) {    
-    BShowStats.addEventListener("click", (evento) => {
-          //Limpiar lo que tenga dentro el html
-    const contenedorP = document.getElementById("jugadoresPP");
-    const contenedorE = document.getElementById("jugadoresPE");
 
-    //Crear los elemementos de html
+    const botonST = document.getElementById("BShowStats");
+    botonST.addEventListener("click", () => {
+          //Tabla jugadores por posicion
+    const tablaJPP = document.createElement("table");
+    tablaJPP.border = "1";
 
-    //Tabla por posicion
-    const tablaP = document.createElement("table");
-    tablaP.style.border = 1;
+    //Encabezado de los jugadores por posicion
+    const theadJPP = document.createElement("thead");
 
-    //Encabezado
-    const theadP = document.createElement("thead");
-    theadP.innerHTML = `
-                <tr>
-                    <td>Posicion</td>
-                    <td>Jugadores</td>
-                </tr>
-            `;
+    //Relleno del encabezado
+    theadJPP.innerHTML = ` 
+    <tr>
+      <th>Posición</th>
+      <th>Número de Jugadores</th>
+    </tr>`;
 
-    tablaP.appendChild(theadP);
+    //Appendeo del encabezado a la tabla
+    tablaJPP.appendChild(theadJPP);
 
-    //Cuerpo
-    const tbodyP = document.createElement("tbody");
+    //Creacion del cuerpo
+    const tbodyJPP = document.createElement("tbody");
+    
+    //Relleno del cuerpo
+    tbodyJPP.innerHTML = `
+    <tr>
+      <td>Portero</td>
+      <td>${jugadoresPP.portero}</td>
+    </tr>
+    
+    <tr>
+      <td>Defensa</td>
+      <td>${jugadoresPP.defensa}</td>
+    </tr>
 
-    const posiciones = ["Porteros", "Defensas", "Delanteros", "Medio-Centros"];
+    <tr>
+      <td>Delantero</td>
+      <td>${jugadoresPP.delantero}</td>
+    </tr>
+    
+    <tr>
+    <td>Mediocentro</td>
+      <td>${jugadoresPP.mediocentro}</td>
+    </tr>`;
+    
+    
+    //Appendeo del cuerpo a la tabla
+    tablaJPP.appendChild(tbodyJPP);
 
-    posiciones.forEach((posicion) => {
-      const fila = document.createElement("tr");
+    //Contenedor de la tabla
+    const contenedorTabla = document.getElementById("cShowStats");
+    
+    //Limpio el contenedor de la tabla
+    contenedorTabla.innerHTML = "";
 
-      const columnaPos = document.createElement("td");
-      columnaPos.textContent = posicion;
+    //Asignacion de valores a la tabla
+    contenedorTabla.appendChild(tablaJPP);
 
-      const columnaCant = document.createElement("td");
-      columnaCant.textContent = jugadoresPP[posicion];
 
-      fila.appendChild(columnaPos);
-      fila.appendChild(columnaCant);
-      tbodyP.appendChild(fila);
-    });
 
-    //Tabla por equipos
-    const tablaE = document.createElement("table");
-    tablaE.style.border = 1;
-
-    //Encabezado
-    const theadE = document.createElement("thead");
-    theadE.innerHTML = `
-            <tr>
-                <td>Equipo</td>
-                <td>Jugadores</td>
-            </tr>
-            `;
-
-    tablaE.appendChild(theadE);
-
-    //Cuerpo
-    const tbodyE = document.createElement("tbody");
-
-    //Divido el objeto en un par clave valor y hago forEach
-    Object.entries(jugadoresPE).forEach(([equipo, jugadores]) => {
-      const fila = document.createElement("tr");
-
-      const columnaEq = document.createElement("td");
-      columnaEq.textContent = equipo;
-
-      const columnaCant = document.createElement("td");
-      columnaCant.textContent = jugadores;
-
-      fila.appendChild(columnaEq);
-      fila.appendChild(columnaCant);
-      tbodyE.appendChild(fila);
-    });
-
-    //Añado las tablas a los contenedores
-    contenedorP.appendChild(tablaP);
-    contenedorE.appendChild(tablaE);
-    });
-  }
+  })};
 
   //Pop-up de agregar el jugador
   renderAJugador() {
@@ -100,7 +82,7 @@ class Vista {
                         <label>Nombre</label>
                         <input type="text" class="inputs" id="nombre" name="nombre" placeholder="Nombre" required><br><br>
                         <label>Apellidos</label>
-                        <input type="text" class="inputs" id = "apellidos" name="apellidos" placeholder="Apellidos" required><br><br>
+                        <input type="text" class="inputs" id = "apellido" name="apellidos" placeholder="Apellidos" required><br><br>
                         <label>Posicion</label>
                         <input type="text" class="inputs" id = "posicion" name="posicion" placeholder="Posición" required><br><br>
                         <label>Edad</label>
@@ -126,33 +108,24 @@ class Vista {
 
   //Captura de los datos del jugador
   getDatosJugador() {
-    //Captura de datos y envio al controlador
-    const formulario = document.getElementById("formularioJ");
-
-    //Al envio del formulario, se recojen los datos, se envian al controlador y se cierra el pop-up
-    formulario.addEventListener("submit", (evento) => {
-      //Evito el cierre por defecto del pop-up
-      evento.preventDefault();
-
       //Recojo datos
       const datos = {
         nombre: document.getElementById("nombre").value,
-        apellidos: document.getElementById("apellidos").value,
+        apellidos: document.getElementById("apellido").value,
         posicion: document.getElementById("posicion").value,
         edad: parseInt(document.getElementById("edad").value),
       };
 
       //Limpio los datos de los inputs
       document.getElementById("nombre").value = "";
-      document.getElementById("apellidos").value = "";
+      document.getElementById("apellido").value = "";
       document.getElementById("posicion").value = "";
       document.getElementById("edad").value = "";
 
-      console.log(datos);
+      console.log("En la vista" + datos);
 
       //Envio datos al controlador
       return datos;
-    });
   }
 
   //Pop-up de agregar el equipo
@@ -160,7 +133,7 @@ class Vista {
     const container = document.getElementById("cfAgregarE");
     container.innerHTML = `
             <dialog id="fAgregarEquipo">
-                <form method="dialog" id = "formulario">
+                <form method="dialog" id = "formularioE">
                 <button type = "button" id = "XDeCierreE">X</button>
                 <h3>Agregar Equipo</h3>
                 <label>Nombre</label>
@@ -190,19 +163,11 @@ class Vista {
 
   //Captura de datos del equipo
   getDatosEquipo() {
-    //Captura de datos y envio al controlador
-    const formulario = document.getElementById("formulario");
-
-    //Al envio del formulario, se recojen los datos, se envian al controlador y se cierra el pop-up
-    formulario.addEventListener("submit", (evento) => {
-      //Evito el cierre por defecto del pop-up
-      evento.preventDefault();
-
       //Recojo datos
       const datos = {
-        nombre : document.getElementById("nombreE"),
-        ciudad : document.getElementById("ciudad"),
-        estadio : document.getElementById("estadio"),
+        nombre : document.getElementById("nombreE").value,
+        ciudad : document.getElementById("ciudad").value,
+        estadio : document.getElementById("estadio").value,
       };
 
       //Limpio los datos de los inputs
@@ -212,6 +177,5 @@ class Vista {
 
       //Envio datos al controlador
       return datos;
-    });
   }
 }
