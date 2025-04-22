@@ -7,11 +7,8 @@ class Vista {
   }
 
   //Mostrar las stats
-  showstats(jugadoresPP, jugadoresPE) {    
-
-    const botonST = document.getElementById("BShowStats");
-    botonST.addEventListener("click", () => {
-          //Tabla jugadores por posicion
+  showstats(jugadoresPP, jugadoresPE) {
+    //Tabla jugadores por posicion
     const tablaJPP = document.createElement("table");
     tablaJPP.border = "1";
 
@@ -65,10 +62,7 @@ class Vista {
 
     //Asignacion de valores a la tabla
     contenedorTabla.appendChild(tablaJPP);
-
-
-
-  })};
+  }
 
   //Pop-up de agregar el jugador
   renderAJugador() {

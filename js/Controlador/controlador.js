@@ -44,8 +44,11 @@ class Controlador {
           console.log("Datos del equipo enviados al controlador");
         });
 
-    this.vista.showstats(this.Equipo.contarJugadoresPorTodasLasPosiciones(), this.ModeloEquipo.contarJugadoresPorCadaEquipo());
-  }
+
+        const botonST = document.getElementById("BShowStats");
+        botonST.addEventListener("click", () => {
+          this.vista.showstats(this.Equipo.contarJugadoresPorTodasLasPosiciones(), this.ModeloEquipo.contarJugadoresPorCadaEquipo());
+        })};
 }
 
 // Iniciar controlador cuando cargue el DOM
