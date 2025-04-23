@@ -49,12 +49,12 @@ class Controlador {
           console.log("Datos del equipo enviados al controlador");
 
           /*//Actualizar la lista de los equipos en la asignacion
-          this.vista.renderAJE(this.ModeloEquipo.obtenerEquipos());
+          this.vista.renderAJE(this.ModeloEquipo.obtenerEquipos());*/
 
           //Actualizar la lista de equipos en la vista si la tabla ya existe
           if (document.getElementById("theadJE")){
             this.vista.showstats(this.ModeloFutbolista.contarJugadoresPorTodasLasPosiciones(), this.ModeloEquipo.contarJugadoresPorCadaEquipo());
-          }*/
+          }
         });
 
         //Funcionalidad del boton para mostrar las stats
@@ -80,6 +80,8 @@ class Controlador {
         botonVerJugadores.addEventListener("click", () => {
           const jugadores = this.ModeloFutbolista.obtenerFutbolistas();
           this.vista.renderVerJugadores(jugadores);
+          const dialog = document.getElementById("dVerJugadores");
+          dialog.showModal();
         });
 
         // Render dialog for viewing teams
@@ -87,6 +89,8 @@ class Controlador {
         botonVerEquipos.addEventListener("click", () => {
           const equipos = this.ModeloEquipo.obtenerEquipos();
           this.vista.renderVerEquipos(equipos);
+          const dialog = document.getElementById("dVerEquipos");
+          dialog.showModal();
         });
       };
 }

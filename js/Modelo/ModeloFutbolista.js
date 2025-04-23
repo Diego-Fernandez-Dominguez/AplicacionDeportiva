@@ -10,6 +10,8 @@ class ModeloFutbolista {
   agregarFutbolista(objetoFutbolista) {
     let sePudo = false;
 
+    objetoFutbolista.posicion = objetoFutbolista.posicion.toLowerCase();
+
     //verificacion de datos de los futbolistas, no se pueden tener dos futbolistas con el
     // mismo nombre y apellido
     const futbolistaExistente = this.futbolistas.find(
@@ -18,13 +20,22 @@ class ModeloFutbolista {
         futbolista.apellido === objetoFutbolista.apellido
     );
 
-    //Si el futbolista ya existe, no se agrega
-    if (futbolistaExistente) {
-      console.log("Ya existe un futbolista con ese nombre y apellido.");
+    //Si el futbolista ya existe, no se agrega o si la edad es menor a 16
+    if (futbolistaExistente || objetoFutbolista.edad<16) {
+      console.log("No se ha podido añadir el futbolista.");
       return sePudo;
 
       //Si el futbolista no existe, se agrega
     } else {
+      
+      if(objetoFutbolista.posicion !== "portero" &&
+        objetoFutbolista.posicion !== "defensa" &&
+        objetoFutbolista.posicion !== "delantero" &&
+        objetoFutbolista.posicion !== "mediocentro"
+      ) {
+        console.log("No se ha podido añadir el futbolista.");
+        return sePudo;
+      }
 
       sePudo = true;
 

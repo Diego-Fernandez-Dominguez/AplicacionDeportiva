@@ -7,19 +7,25 @@
 
 /* Body - Fondo general y fuente */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    background-color: #f3f3f3;
     color: #333;
+    font-weight: bold;
+    
+}
+
+body table{
+    margin-left: 10%;
 }
 
 /* Título principal */
 #cTitle {
     text-align: center;
-    margin-top: 20px;
+    margin-top: 42px;
 }
 
 #tTitle {
-    font-size: 2.5rem;
+    font-size: 3rem;
     color: #333;
     font-weight: bold;
 }
@@ -41,16 +47,17 @@ button {
     font-size: 1rem;
     cursor: pointer;
     border: none;
-    background-color: #007bff;
+    background-color: #b60000;
     color: white;
     border-radius: 5px;
     transition: background-color 0.3s ease;
     outline: none;
     z-index: 10;
+    box-shadow: #333 0px 4px 2px;
 }
 
 button:hover {
-    background-color: #0056b3;
+    background-color: #292020;
 }
 
 
@@ -69,7 +76,7 @@ table th, table td {
 }
 
 table th {
-    background-color: #007bff;
+    background-color: #b60000;
     color: white;
 }
 
@@ -77,12 +84,30 @@ table tr:nth-child(even) {
     background-color: #f9f9f9;
 }
 
+/* Style for the dialog tables */
+dialog table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+dialog th, dialog td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+dialog th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
+
 /* Formularios */
 input[type="text"], input[type="number"], select {
     width: 100%;
     padding: 10px;
     margin: 10px 0;
-    border: 1px solid #ccc;
+    border: 1px solid #333;
     border-radius: 5px;
     font-size: 1rem;
 }
@@ -101,7 +126,7 @@ label {
 /* Botón de envío */
 .btsEnviar {
     padding: 12px 25px;
-    background-color: #28a745;
+    background-color: #b60000;
     color: white;
     border: none;
     border-radius: 5px;
@@ -115,11 +140,11 @@ label {
 }
 
 .btsEnviar:hover {
-    background-color: #218838;
+    background-color: #333;
 }
 
 /* Botón de cerrar */
-button#XDeCierre, button#XDeCierreE, button#XDeCierreAJE {
+button#XDeCierre, button#XDeCierreE, button#XDeCierreAJE, button#XDeCierreVerJugadores, button#XDeCierreVerEquipos {
     position: absolute;
     top: 10px;
     right: 10px;
@@ -131,7 +156,7 @@ button#XDeCierre, button#XDeCierreE, button#XDeCierreAJE {
     z-index: 1001; /* Aseguramos que el botón de cerrar esté encima del formulario */
 }
 
-button#XDeCierre:hover, button#XDeCierreE:hover, button#XDeCierreAJE:hover {
+button#XDeCierre:hover, button#XDeCierreE:hover, button#XDeCierreAJE:hover, button#XDeCierreVerJugadores:hover, button#XDeCierreVerEquipos:hover {
     color: #ff0a0a;
 }
 
@@ -160,12 +185,12 @@ dialog {
 }
 
 #bAsignar{
-    background-color: #28a745;
+    background-color: #b60000;
     color: white;
 }
 
 #bAsignar:hover {
-    background-color: #218838;
+    background-color: #333;
 }
 
 h3 {
@@ -182,6 +207,15 @@ form {
 dialog[open] {
     animation: fadeIn 0.3s ease;
 }
+
+#tablaJugadores, #tablaEquipos {
+    margin-left: 0%;
+}
+
+dialog th {
+    background-color: #b60000;
+    font-weight: bold;
+  }
 
 @keyframes fadeIn {
     from {

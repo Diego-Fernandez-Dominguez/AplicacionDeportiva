@@ -225,7 +225,7 @@ class Vista {
               <button id="XDeCierreAJE">X</button>
             </div>
             <div id = "cTituloAJE">
-              <h3 id="tTituloAJE">Asignar Jugador a Equipo</h3>
+              <h3 id="tTituloAJE">Asignar Jugador<br> a Equipo</h3>
             </div>
               <form method="dialog">
                   <div id="cInputJugador">
@@ -300,5 +300,81 @@ class Vista {
 
     //Envio de datos
     return datos;
+  }
+
+  // Render dialog for viewing players in a table
+  renderVerJugadores(jugadores) {
+    const container = document.getElementById("jugadoresPP");
+    container.innerHTML = `
+      <dialog id="dVerJugadores">
+        <div style="display: flex; justify-content: flex-end;">
+          <button id="XDeCierreVerJugadores">X</button>
+        </div>
+        <h3>Lista de Jugadores</h3>
+        <table border="1" id="tablaJugadores">
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Apellido</th>
+              <th>Posición</th>
+              <th>Edad</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${jugadores.map(jugador => `
+              <tr>
+                <td>${jugador.nombre}</td>
+                <td>${jugador.apellido}</td>
+                <td>${jugador.posicion}</td>
+                <td>${jugador.edad}</td>
+              </tr>
+            `).join('')}
+          </tbody>
+        </table>
+      </dialog>
+    `;
+
+    const dialog = document.getElementById("dVerJugadores");
+    const botonDeCierre = document.getElementById("XDeCierreVerJugadores");
+    botonDeCierre.addEventListener("click", () => {
+      dialog.close();
+    });
+  }
+
+  // Render dialog for viewing teams in a table
+  renderVerEquipos(equipos) {
+    const container = document.getElementById("jugadoresPE");
+    container.innerHTML = `
+      <dialog id="dVerEquipos">
+        <div style="display: flex; justify-content: flex-end;">
+          <button id="XDeCierreVerEquipos">X</button>
+        </div>
+        <h3>Lista de Equipos</h3>
+        <table border="1" id="tablaEquipos">
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Ciudad</th>
+              <th>Estadio</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${equipos.map(equipo => `
+              <tr>
+                <td>${equipo.nombre}</td>
+                <td>${equipo.ciudad}</td>
+                <td>${equipo.estadio}</td>
+              </tr>
+            `).join('')}
+          </tbody>
+        </table>
+      </dialog>
+    `;
+
+    const dialog = document.getElementById("dVerEquipos");
+    const botonDeCierre = document.getElementById("XDeCierreVerEquipos");
+    botonDeCierre.addEventListener("click", () => {
+      dialog.close();
+    });
   }
 }
