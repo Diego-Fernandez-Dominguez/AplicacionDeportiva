@@ -33,7 +33,7 @@ class ModeloFutbolista {
         objetoFutbolista.posicion !== "delantero" &&
         objetoFutbolista.posicion !== "mediocentro"
       ) {
-        console.log("No se ha podido añadir el futbolista.");
+        console.log("No se ha podido añadir el futbolista ya que debe ser portero, defensa, delantero o mediocentro.");
         return sePudo;
       }
 
